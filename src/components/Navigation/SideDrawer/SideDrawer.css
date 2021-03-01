@@ -1,0 +1,16 @@
+.SideDrawer {
+  width: 250px;
+  max-width: 70%;
+  background-color: white;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+
+@media (min-width: 500px) {
+  .SideDrawer {
+    display: none;
+  }
+}

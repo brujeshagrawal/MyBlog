@@ -1,0 +1,29 @@
+.NavigationItem {
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 10px 0px;
+}
+
+.NavigationItem a {
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  border-bottom: 3px solid transparent;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active {
+  border-bottom: 3px solid black;
+  color: gray;
+}
+
+@media (min-width: 500px) {
+  .NavigationItem {
+    margin: auto 0px auto 20px;
+  }
+
+  .NavigationItem a:hover,
+  .NavigationItem a:active {
+    color: white;
+  }
+}

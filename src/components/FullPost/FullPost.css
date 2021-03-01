@@ -1,0 +1,20 @@
+.FullPost {
+  width: 80%;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px #eee;
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.DeleteButton {
+  border: none;
+  outline: none;
+  background-color: red;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+}

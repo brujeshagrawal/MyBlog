@@ -1,0 +1,11 @@
+.Post {
+  width: 48%;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px #000;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
