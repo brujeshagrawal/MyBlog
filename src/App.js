@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Layout from './components/Layout/Layout';
+import Layout from './hoc/Layout/Layout';
 import Blog from './containers/Blog/Blog';
 
 function App() {
@@ -9,9 +9,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Layout>
-          <Blog />
+            <Blog />
         </Layout>
-      </BrowserRouter>
+        </BrowserRouter>
     </div>
   );
 }

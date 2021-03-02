@@ -12,7 +12,8 @@
 }
 
 .NavigationItem a:hover,
-.NavigationItem a:active {
+.NavigationItem a:active,
+.NavigationItem a.active {
   border-bottom: 3px solid black;
   color: gray;
 }
@@ -23,7 +24,8 @@
   }
 
   .NavigationItem a:hover,
-  .NavigationItem a:active {
+  .NavigationItem a:active,
+  .NavigationItem a.active {
     color: white;
   }
 }
