@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Posts from './Posts/Posts';
-import FullPost from '../../components/FullPost/FullPost';
+// import FullPost from '../../components/FullPost/FullPost';
 import NewPost from './NewPost/NewPost';
 
 import classes from './Blog.css';
-import axios from '../../axios';
+// import axios from '../../axios';
 
 class Blog extends Component{
     // state={

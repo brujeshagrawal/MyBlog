@@ -2,23 +2,88 @@ import React, { Component } from 'react';
 import axios from '../../../axios';
 import classes from './NewPost.css';
 
+import Input from '../../../components/UI/Input/Input';
+
 class NewPost extends Component{
 
-    state={
-        post: {
-            title:'',
-            body:''
-        }
-    };
+    // state={
+    //     post: {
+    //         title:'',
+    //         body:''
+    //     }
+    // };
 
-    inputChangeHandler = (event) => {
-        const post = {...this.state.post};
-        post[event.target.name] = event.target.value;
-        this.setState({post: post});
+    state ={
+        postForm : {
+            title : {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    name: 'title',
+                    placeholder: 'Post Title'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    maxLength: 10
+                },
+                valid: false,
+                touched: false
+            },
+            body: {
+                elementType: 'textarea',
+                elementConfig: {
+                    name: 'body',
+                    rows: '10',
+                    placeholder: 'Post Body'
+                },
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
+            }
+        },
+        formValid: false
+    }
+
+    checkValidity(value, rules){
+        let isValid = true;
+
+        if(!rules){
+            return true;
+        }
+
+        if(rules.required){
+            isValid = isValid && value.trim() !== '';
+        }
+        if(rules.maxLength){
+            isValid = isValid && value.length <= rules.maxLength;
+        }
+        return isValid;
+    }
+
+    inputChangedHandler = (event) => {
+        const updatedPostForm = {...this.state.postForm};
+        const updatedPost = {...updatedPostForm[event.target.name]};
+        updatedPost.value = event.target.value;
+        updatedPost.valid = this.checkValidity(updatedPost.value, updatedPost.validation);
+        updatedPost.touched = true;
+        updatedPostForm[event.target.name] = updatedPost;
+        let formValid = true;
+        for(let inputIdentifier in updatedPostForm){
+            formValid = formValid && updatedPostForm[inputIdentifier].valid;
+        }
+        
+        this.setState({postForm: updatedPostForm, formValid: formValid});
     }
 
     addPostHandler = () => {
-        const post = {...this.state.post};
+        const post = {
+            title: this.state.postForm.title.value,
+            body: this.state.postForm.body.value
+        };
         axios.post('/posts/api/', post)
                 .then(response => console.log(response))
                 .catch(error => console.log(error));
@@ -28,33 +93,20 @@ class NewPost extends Component{
     render(){
         return (
             <div className={classes.NewPost}>
-                <form>
-                    <div className={classes.InputElementGroup} >
-                        <label>Title : </label>
-                        <input 
-                            type="text" 
-                            name="title"
-                            className={classes.InputElement}
-                            value={this.state.post.title}
-                            onChange={(event) => this.inputChangeHandler(event)}
-                        />
-                    </div>
-                    <div className={classes.InputElementGroup}>
-                        <label>Content : </label>
-                        <textarea 
-                            className={classes.InputElement} 
-                            name="body"
-                            rows='5'
-                            value={this.state.post.body}
-                            onChange={(event) => this.inputChangeHandler(event)}
-                        />
-                    </div>
+                <form onSubmit={this.addPostHandler}>
+                    { Object.keys(this.state.postForm)
+                            .map(postKey => <Input 
+                                                key={postKey}
+                                                changed={this.inputChangedHandler}
+                                                invalid={!this.state.postForm[postKey].valid && this.state.postForm[postKey].touched}
+                                                {...this.state.postForm[postKey]} />) }
+                     
                     <div className={classes.InputElementGroup}>
                         <button 
                             className={classes.FormButton}
-                            onClick={this.addPostHandler}
+                            disabled={!this.state.formValid}
                         >Add Post</button>
-                    </div>
+                    </div> 
                 </form>
             </div>
         );

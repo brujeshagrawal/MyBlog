@@ -46,6 +46,12 @@
   cursor: pointer;
 }
 
+.FormButton:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  color: white;
+}
+
 @media (min-width: 500px) {
   .InputElementGroup {
     flex-flow: row;
