@@ -14,20 +14,20 @@ class Posts extends Component{
     };
 
     componentDidMount(){
-        axios.get('/posts/api/')
+        axios.get('/posts/')
                 .then(response => this.setState({posts: response.data}))
                 .catch(error => console.log(error));
     }
 
     postClickHandler = (id) => {
-        axios.get('/posts/api/' + id + '/')
+        axios.get('/posts/' + id + '/')
                 .then(response => this.setState({displayPost: response.data}))
                 .catch(error => console.log(error));
         this.props.history.push('/posts/' + id);
     }
 
     deletePostHandler = (id) => {
-        axios.delete('/posts/api/' + id + '/')
+        axios.delete('/posts/' + id + '/')
                 .then(response => console.log(response))
                 .catch(error => console.log(error));
         this.props.history.replace('/posts/');

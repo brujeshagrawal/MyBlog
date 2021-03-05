@@ -6,13 +6,6 @@ import Input from '../../../components/UI/Input/Input';
 
 class NewPost extends Component{
 
-    // state={
-    //     post: {
-    //         title:'',
-    //         body:''
-    //     }
-    // };
-
     state ={
         postForm : {
             title : {
@@ -84,7 +77,7 @@ class NewPost extends Component{
             title: this.state.postForm.title.value,
             body: this.state.postForm.body.value
         };
-        axios.post('/posts/api/', post)
+        axios.post('/posts/', post)
                 .then(response => console.log(response))
                 .catch(error => console.log(error));
         this.props.history.replace('/posts');

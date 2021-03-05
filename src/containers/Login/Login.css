@@ -1,0 +1,33 @@
+.Login {
+  width: 80%;
+  margin: 20px auto;
+  box-sizing: border-box;
+  box-shadow: 0 2px 30px #eee;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.LoginButton {
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  padding: 10px;
+  font-weight: bold;
+  font: inherit;
+  margin-top: 20px;
+  background-color: darkgray;
+  color: #000;
+  cursor: pointer;
+}
+
+.LoginButton:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  color: white;
+}
+
+@media (min-width: 500px) {
+  .Login {
+    width: 60%;
+  }
+}
